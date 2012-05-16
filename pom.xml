@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>scala-di</groupId>
+    <artifactId>scala-di</artifactId>
+    <version>1.0</version>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.scala-tools</groupId>
+                <artifactId>maven-scala-plugin</artifactId>
+                <executions>
+                    <execution><id>compile</id><goals><goal>compile</goal></goals><phase>compile</phase></execution>
+                    <execution><id>test-compile</id><goals><goal>testCompile</goal></goals><phase>test-compile</phase></execution>
+                    <execution><phase>process-resources</phase><goals><goal>compile</goal></goals></execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.scala-tools</groupId>
+                    <artifactId>maven-scala-plugin</artifactId>
+                    <version>2.14.2</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-plugin-plugin</artifactId>
+                    <version>2.4</version>
+                    <configuration>
+                        <goalPrefix>maven-dependency-plugin</goalPrefix>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <repositories>
+        <repository><id>scala-tools.org releases</id><name>Scala-tools Maven2 Releases Snapshots Repository</name>
+            <url>http://scala-tools.org/repo-snapshots</url></repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>scala-tools.org</id>
+            <name>Scala-tools Maven2 Repository</name>
+            <url>http://scala-tools.org/repo-releases</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <dependencies>
+        <dependency><groupId>org.scala-lang</groupId><artifactId>scala-library</artifactId><version>2.9.2</version></dependency>
+        <dependency><groupId>org.slf4j</groupId><artifactId>slf4j-api</artifactId><version>1.6.4</version></dependency>
+        <dependency><groupId>junit</groupId><artifactId>junit</artifactId><version>4.10</version></dependency>
+        <dependency><groupId>org.scalatest</groupId><artifactId>scalatest_2.9.2</artifactId><version>1.7.2</version></dependency>
+    </dependencies>
+    
+</project>

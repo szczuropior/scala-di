@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite failures="0" time="1.24" errors="1" skipped="0" tests="1" name="com.lucidmouse.scala.di.test.ContextTest">
+  <properties>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="sun.boot.library.path" value="/usr/lib/jvm/java-6-openjdk-i386/jre/lib/i386"/>
+    <property name="java.vm.version" value="20.0-b12"/>
+    <property name="java.vm.vendor" value="Sun Microsystems Inc."/>
+    <property name="java.vendor.url" value="http://java.sun.com/"/>
+    <property name="path.separator" value=":"/>
+    <property name="java.vm.name" value="OpenJDK Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="idea.launcher.port" value="7533"/>
+    <property name="user.country" value="PL"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value="unknown"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="/media/PRACA/GIT_REPOSITORIES/scala-di"/>
+    <property name="java.runtime.version" value="1.6.0_24-b24"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
+    <property name="java.endorsed.dirs" value="/usr/lib/jvm/java-6-openjdk-i386/jre/lib/endorsed"/>
+    <property name="os.arch" value="i386"/>
+    <property name="java.io.tmpdir" value="/tmp"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.specification.vendor" value="Sun Microsystems Inc."/>
+    <property name="os.name" value="Linux"/>
+    <property name="classworlds.conf" value="/usr/share/maven2/bin/m2.conf"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/usr/lib/jvm/java-6-openjdk-i386/jre/lib/i386/server:/usr/lib/jvm/java-6-openjdk-i386/jre/lib/i386:/usr/lib/jvm/java-6-openjdk-i386/jre/../lib/i386:/usr/lib/jvm/java-6-sun-1.6.0.26/jre/lib/i386/server:/usr/lib/jvm/java-6-sun-1.6.0.26/jre/lib/i386:/usr/lib/jvm/java-6-sun-1.6.0.26/jre/../lib/i386:/media/PRACA/programowanie/linux/scala/idea-IC-117.117/bin::/usr/java/packages/lib/i386:/usr/lib/i386-linux-gnu/jni:/lib/i386-linux-gnu:/usr/lib/i386-linux-gnu:/usr/lib/jni:/lib:/usr/lib"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="50.0"/>
+    <property name="sun.management.compiler" value="HotSpot Tiered Compilers"/>
+    <property name="os.version" value="3.2.0-24-generic"/>
+    <property name="user.home" value="/home/michal"/>
+    <property name="user.timezone" value="Europe/Warsaw"/>
+    <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="idea.launcher.bin.path" value="/media/PRACA/programowanie/linux/scala/idea-IC-117.117/bin"/>
+    <property name="java.specification.version" value="1.6"/>
+    <property name="user.name" value="michal"/>
+    <property name="java.class.path" value="/usr/share/maven2/boot/classworlds.jar:/media/PRACA/programowanie/linux/scala/idea-IC-117.117/lib/idea_rt.jar"/>
+    <property name="java.vm.specification.version" value="1.0"/>
+    <property name="sun.arch.data.model" value="32"/>
+    <property name="java.home" value="/usr/lib/jvm/java-6-openjdk-i386/jre"/>
+    <property name="sun.java.command" value="com.intellij.rt.execution.application.AppMain org.codehaus.classworlds.Launcher --no-plugin-registry --fail-fast --no-plugin-updates --strict-checksums --update-snapshots -f /media/PRACA/GIT_REPOSITORIES/scala-di/pom.xml test"/>
+    <property name="java.specification.vendor" value="Sun Microsystems Inc."/>
+    <property name="user.language" value="pl"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.6.0_24"/>
+    <property name="java.ext.dirs" value="/usr/lib/jvm/java-6-openjdk-i386/jre/lib/ext:/usr/java/packages/lib/ext"/>
+    <property name="securerandom.source" value="file:/dev/./urandom"/>
+    <property name="sun.boot.class.path" value="/usr/lib/jvm/java-6-openjdk-i386/jre/lib/resources.jar:/usr/lib/jvm/java-6-openjdk-i386/jre/lib/rt.jar:/usr/lib/jvm/java-6-openjdk-i386/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-6-openjdk-i386/jre/lib/jsse.jar:/usr/lib/jvm/java-6-openjdk-i386/jre/lib/jce.jar:/usr/lib/jvm/java-6-openjdk-i386/jre/lib/charsets.jar:/usr/lib/jvm/java-6-openjdk-i386/jre/lib/netx.jar:/usr/lib/jvm/java-6-openjdk-i386/jre/lib/plugin.jar:/usr/lib/jvm/java-6-openjdk-i386/jre/lib/rhino.jar:/usr/lib/jvm/java-6-openjdk-i386/jre/lib/modules/jdk.boot.jar:/usr/lib/jvm/java-6-openjdk-i386/jre/classes"/>
+    <property name="java.vendor" value="Sun Microsystems Inc."/>
+    <property name="maven.home" value="/usr/share/maven2"/>
+    <property name="file.separator" value="/"/>
+    <property name="java.vendor.url.bug" value="http://java.sun.com/cgi-bin/bugreport.cgi"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.desktop" value="gnome"/>
+    <property name="sun.cpu.isalist" value=""/>
+  </properties>
+  <testcase time="0.051" classname="(test) Method cleaning context should remove all added data to context(com.lucidmouse.scala.di.test.ContextTest)" name="(test) Method cleaning context should remove all added data to context(com.lucidmouse.scala.di.test.ContextTest)">
+    <error message="true (of class java.lang.Boolean)" type="scala.MatchError">scala.MatchError: true (of class java.lang.Boolean)
+	at com.lucidmouse.scala.di.Context$.getContextOrCreateOne(Context.scala:26)
+	at com.lucidmouse.scala.di.CtxElt.lazySingleton(ContextCreator.scala:41)
+	at com.lucidmouse.scala.di.test.ContextTest$$anonfun$1$Ctx1$2$.&lt;init&gt;(ContextTest.scala:21)
+	at com.lucidmouse.scala.di.test.ContextTest$$anonfun$1.Ctx1$1(ContextTest.scala:19)
+	at com.lucidmouse.scala.di.test.ContextTest$$anonfun$1.apply$mcV$sp(ContextTest.scala:24)
+	at com.lucidmouse.scala.di.test.ContextTest$$anonfun$1.apply(ContextTest.scala:18)
+	at com.lucidmouse.scala.di.test.ContextTest$$anonfun$1.apply(ContextTest.scala:18)
+	at org.scalatest.FlatSpec$$anon$1.apply(FlatSpec.scala:2565)
+	at org.scalatest.Suite$class.withFixture(Suite.scala:1967)
+	at com.lucidmouse.scala.di.test.ContextTest.withFixture(ContextTest.scala:17)
+	at org.scalatest.FlatSpec$class.invokeWithFixture$1(FlatSpec.scala:2562)
+	at org.scalatest.FlatSpec$$anonfun$runTest$1.apply(FlatSpec.scala:2571)
+	at org.scalatest.FlatSpec$$anonfun$runTest$1.apply(FlatSpec.scala:2571)
+	at org.scalatest.SuperEngine.runTestImpl(Engine.scala:168)
+	at org.scalatest.FlatSpec$class.runTest(FlatSpec.scala:2571)
+	at com.lucidmouse.scala.di.test.ContextTest.runTest(ContextTest.scala:17)
+	at org.scalatest.FlatSpec$$anonfun$runTests$1.apply(FlatSpec.scala:2633)
+	at org.scalatest.FlatSpec$$anonfun$runTests$1.apply(FlatSpec.scala:2633)
+	at org.scalatest.SuperEngine$$anonfun$org$scalatest$SuperEngine$$runTestsInBranch$1.apply(Engine.scala:226)
+	at org.scalatest.SuperEngine$$anonfun$org$scalatest$SuperEngine$$runTestsInBranch$1.apply(Engine.scala:215)
+	at scala.collection.LinearSeqOptimized$class.foreach(LinearSeqOptimized.scala:59)
+	at scala.collection.immutable.List.foreach(List.scala:76)
+	at org.scalatest.SuperEngine.org$scalatest$SuperEngine$$runTestsInBranch(Engine.scala:215)
+	at org.scalatest.SuperEngine$$anonfun$org$scalatest$SuperEngine$$runTestsInBranch$1.apply(Engine.scala:231)
+	at org.scalatest.SuperEngine$$anonfun$org$scalatest$SuperEngine$$runTestsInBranch$1.apply(Engine.scala:215)
+	at scala.collection.LinearSeqOptimized$class.foreach(LinearSeqOptimized.scala:59)
+	at scala.collection.immutable.List.foreach(List.scala:76)
+	at org.scalatest.SuperEngine.org$scalatest$SuperEngine$$runTestsInBranch(Engine.scala:215)
+	at org.scalatest.SuperEngine.runTestsImpl(Engine.scala:289)
+	at org.scalatest.FlatSpec$class.runTests(FlatSpec.scala:2633)
+	at com.lucidmouse.scala.di.test.ContextTest.runTests(ContextTest.scala:17)
+	at org.scalatest.Suite$class.run(Suite.scala:2292)
+	at com.lucidmouse.scala.di.test.ContextTest.org$scalatest$FlatSpec$$super$run(ContextTest.scala:17)
+	at org.scalatest.FlatSpec$$anonfun$run$1.apply(FlatSpec.scala:2680)
+	at org.scalatest.FlatSpec$$anonfun$run$1.apply(FlatSpec.scala:2680)
+	at org.scalatest.SuperEngine.runImpl(Engine.scala:325)
+	at org.scalatest.FlatSpec$class.run(FlatSpec.scala:2680)
+	at com.lucidmouse.scala.di.test.ContextTest.run(ContextTest.scala:17)
+	at org.scalatest.junit.JUnitRunner.run(JUnitRunner.scala:94)
+	at org.apache.maven.surefire.junit4.JUnit4TestSet.execute(JUnit4TestSet.java:53)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:123)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:104)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:616)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:164)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:110)
+	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
+	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
+</error>
+  </testcase>
+</testsuite>
