@@ -3,8 +3,18 @@ package com.lucidmouse.scala.di
 import collection.mutable.HashMap
 import com.lucidmouse.scala.concurrent.Synchronized
 
+/**
+ * Created by: m.ludwinowicz[a]gmail.com
+ * 12.05.12, 16:02
+ */
+
+/**
+ * This trait should be used to obtain object contained in current context.
+ * It's important to set current context before asking about objects stored in the context.
+ * This should be done by executing Context.setContext(context: String).
+ */
 trait Context {
-  def get(id: String): Any = Context getCurrentContext() get id
+  def get(id: String): Any = Context getCurrentContext() get(id)
 }
 
 
@@ -29,7 +39,7 @@ private object Context extends Synchronized {
 //    allContexts contains name match {   //<--- !!! THIS BREAKS SCALATEST TEST !!!!!! :/
 //      case false => allContexts put(name, new CtxData(parentContextName))
 //    }
-    allContexts get name get
+    allContexts get(name) get
   }
 
   def getExistingContextOrEmptyOne(name: String): CtxData = synchronized {
@@ -37,9 +47,11 @@ private object Context extends Synchronized {
   }
 
   /** Only for tests */
-  def removeAllContextsInformation() = synchronized {
-    allContexts clear()
-    chosenContext = EmptyContext
+  def removeAllContextsInformation() {
+    synchronized {
+      allContexts clear()
+      chosenContext = EmptyContext
+    }
   }
 }
 
@@ -52,7 +64,7 @@ private class CtxData(parentContextName: String) extends Synchronized {
 
   def get(id: String): Any = {
     synchronized {
-      if (singletons contains id) singletons get id get
+      if (singletons contains id) singletons get(id) get
       else if (prototypes contains id) createObject(prototypes get id get)
       else if (lazySingletons contains id) {
         val newSingleton = createObject(lazySingletons get id get)

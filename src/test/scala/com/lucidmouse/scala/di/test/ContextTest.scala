@@ -9,7 +9,7 @@ import com.lucidmouse.scala.di.{UnknownIdException, Context, ContextCreator}
 
 
 /**
- * Created by: michal
+ * Created by: m.ludwinowicz[a]gmail.com
  * 13.05.12, 12:33
  */
 
@@ -27,6 +27,8 @@ class ContextTest extends FlatSpec with ShouldMatchers {
       get("1") should equal ("one")
       get("2") should equal ("two")
       get("3") should equal ("three")
+      val one: String = get("1").asInstanceOf[String]
+      one should equal ("one")
     }
     Ctx1User
     Context.removeAllContextsInformation()
@@ -91,11 +93,11 @@ class ContextTest extends FlatSpec with ShouldMatchers {
 
 class Counter {
   var counter = 0
-  def inc() = counter += 1
+  def increase() { counter += 1 }
 }
 
 class CountingObject(val counter: Counter) {
-  counter inc
+  counter.increase()
 }
 
 

@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="871f616f-e8ee-4a23-a52a-b3737373a884" name="Default" comment="" />
+    <list default="true" id="871f616f-e8ee-4a23-a52a-b3737373a884" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/com/lucidmouse/scala/concurrent/Synchronized.scala" afterPath="$PROJECT_DIR$/src/main/scala/com/lucidmouse/scala/concurrent/Synchronized.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/com/lucidmouse/scala/di/Context.scala" afterPath="$PROJECT_DIR$/src/main/scala/com/lucidmouse/scala/di/Context.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/com/lucidmouse/scala/di/ContextCreator.scala" afterPath="$PROJECT_DIR$/src/main/scala/com/lucidmouse/scala/di/ContextCreator.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/scala/com/lucidmouse/scala/di/test/ContextTest.scala" afterPath="$PROJECT_DIR$/src/test/scala/com/lucidmouse/scala/di/test/ContextTest.scala" />
+    </list>
     <ignored path="scala-di.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -70,7 +76,7 @@
       <file leaf-file-name="ContextCreator.scala" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/com/lucidmouse/scala/di/ContextCreator.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="4" selection-start="777" selection-end="777" vertical-scroll-proportion="0.0">
+            <state line="14" column="40" selection-start="600" selection-end="600" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -79,7 +85,7 @@
       <file leaf-file-name="Context.scala" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/com/lucidmouse/scala/di/Context.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="53" selection-start="360" selection-end="360" vertical-scroll-proportion="0.32608697">
+            <state line="30" column="23" selection-start="824" selection-end="841" vertical-scroll-proportion="0.35326087">
               <folding>
                 <element signature="e#33#66#0" expanded="true" />
               </folding>
@@ -87,10 +93,19 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="Synchronized.scala" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/com/lucidmouse/scala/concurrent/Synchronized.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="40" selection-start="109" selection-end="109" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="ContextTest.scala" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/scala/com/lucidmouse/scala/di/test/ContextTest.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="78" selection-start="647" selection-end="647" vertical-scroll-proportion="0.0">
+            <state line="38" column="4" selection-start="1102" selection-end="1127" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#38#69#0" expanded="true" />
               </folding>
@@ -112,11 +127,11 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/main/scala/com/lucidmouse/scala/concurrent/Synchronized.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/lucidmouse/scala/di/Context2.scala" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/scala/com/lucidmouse/scala/di/ContextCreator.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/com/lucidmouse/scala/concurrent/Synchronized.scala" />
         <option value="$PROJECT_DIR$/src/test/scala/com/lucidmouse/scala/di/test/ContextTest.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/com/lucidmouse/scala/di/ContextCreator.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/lucidmouse/scala/di/Context.scala" />
       </list>
     </option>
@@ -205,7 +220,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="recentsLimit" value="5" />
-    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
+    <property name="options.lastSelected" value="settings.github" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
@@ -562,16 +577,16 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="SBT Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905984" sideWeight="0.32872164" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39957264" sideWeight="0.4980631" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.38247862" sideWeight="0.2268954" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.38247862" sideWeight="0.23021583" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905984" sideWeight="0.49142224" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905984" sideWeight="0.48920864" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32982844" sideWeight="0.61752135" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.38247862" sideWeight="0.7692308" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32982844" sideWeight="0.61752135" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.38247862" sideWeight="0.7659103" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905984" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -616,7 +631,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" />
+    <option name="LAST_COMMIT_MESSAGE" value="" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -638,35 +653,37 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/lucidmouse/scala/concurrent/Synchronized.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="20" selection-start="136" selection-end="136" vertical-scroll-proportion="0.24916944" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="27" column="63" selection-start="1259" selection-end="1259" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/lucidmouse/scala/di/ContextCreator.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="4" selection-start="777" selection-end="777" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/scala/com/lucidmouse/scala/di/test/ContextTest.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="78" selection-start="647" selection-end="647" vertical-scroll-proportion="0.0">
+        <state line="38" column="4" selection-start="1102" selection-end="1127" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#38#69#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/lucidmouse/scala/concurrent/Synchronized.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="40" selection-start="109" selection-end="109" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/lucidmouse/scala/di/ContextCreator.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="40" selection-start="600" selection-end="600" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/com/lucidmouse/scala/di/Context.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="53" selection-start="360" selection-end="360" vertical-scroll-proportion="0.32608697">
+        <state line="30" column="23" selection-start="824" selection-end="841" vertical-scroll-proportion="0.35326087">
           <folding>
             <element signature="e#33#66#0" expanded="true" />
           </folding>
