@@ -9,7 +9,7 @@ import data.{NewContextElement, ContextHolder, ContextData}
  */
 
 /**
- * This class should be used to add object to given context (identified by ctxName).
+ * This class should be used to addFunction object to given context (identified by ctxName).
  * @param parentContext parent of _this_ context : all objects contained in parent (and parent's parents) not declared
  *                      implicitly by _this_ context will be accessible from _this_ context
  */

@@ -6,6 +6,7 @@ import org.scalatest.FlatSpec
 import org.scalatest.junit.JUnitRunner
 import org.scalatest.matchers.ShouldMatchers
 import com.lucidmouse.scala.di.{Context, ContextConfiguration}
+import com.lucidmouse.scala.di.data.AlreadyExistingIdException
 
 
 /**
@@ -60,6 +61,26 @@ class ContextTest extends FlatSpec with ShouldMatchers {
     val ctx = new ContextConfiguration() { "o" prototype { () => new CountingObject(creationCounter) } }
     checkObjectsQuantity(ctx, objectId = "o", creationCounter = creationCounter, expectedAmountBeforeGet = 0,
       expectedAmountAfter1stGet = 1, expectedAmountAfter2ndGet = 2)
+  }
+
+  "Exception" should "be thrown on attempt to add already existing id" in {
+    object Ctx1 extends ContextConfiguration {
+      //having
+      "1" singleton "one"
+      "2" lazySingleton{ () => "two" }
+      "3" prototype { () => new String("three") }
+      //when + then
+      evaluating { "1" singleton "one" } should produce [AlreadyExistingIdException]
+      evaluating { "1" lazySingleton { () => "one" } } should produce [AlreadyExistingIdException]
+      evaluating { "1" prototype { () => new String("one") } } should produce [AlreadyExistingIdException]
+      evaluating { "2" singleton "two" } should produce [AlreadyExistingIdException]
+      evaluating { "2" lazySingleton{ () => "two" } } should produce [AlreadyExistingIdException]
+      evaluating { "2" prototype { () => new String("two") } } should produce [AlreadyExistingIdException]
+      evaluating { "3" singleton "three" } should produce [AlreadyExistingIdException]
+      evaluating { "3" lazySingleton { () => "three" } } should produce [AlreadyExistingIdException]
+      evaluating { "3" prototype { () => new String("three") } } should produce [AlreadyExistingIdException]
+    }
+    Ctx1 setAsCurrentContext
   }
 
 

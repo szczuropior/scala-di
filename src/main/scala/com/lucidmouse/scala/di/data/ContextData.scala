@@ -26,14 +26,23 @@ class ContextData(val parentCtxData: ContextData = EmptyContext) extends NotNull
     }
   }
 
-  def addPrototype(id: String, obj: ()=>Any) { synchronized{ prototypes(id) = obj } }
+  def addPrototype(id: String, obj: ()=>Any) { addObjectToContext(id, ()=>{prototypes(id) = obj}) }
 
-  def addLazySingleton(id: String, obj: ()=>Any) { synchronized{ lazySingletons(id) = obj } }
+  def addLazySingleton(id: String, obj: ()=>Any) { addObjectToContext(id, ()=>{lazySingletons(id) = obj}) }
 
-  def addSingleton(id: String, obj: Any) { synchronized{ singletons(id) = obj } }
+  def addSingleton(id: String, obj: Any) { addObjectToContext(id, ()=>{singletons(id) = obj}) }
 
   private def createObject(creator: ()=>Any): Any = {
     creator()
+  }
+
+  private def addObjectToContext(id: String, addFunction: ()=>Unit) {
+    synchronized {
+      if ((prototypes contains id) || (singletons contains id) || (lazySingletons contains id)) {
+        throw new AlreadyExistingIdException(id)
+      }
+      addFunction()
+    }
   }
 }
 
@@ -58,3 +67,5 @@ private object EmptyContext extends EmptyContext {
 
 
 class UnknownIdException(id: String) extends Exception("Object idetidied by ID = '" + id + "' could not have been found!")
+
+class AlreadyExistingIdException(id: String) extends Exception("Object idetidied by ID = '" + id + "' has already been added to the context!")
