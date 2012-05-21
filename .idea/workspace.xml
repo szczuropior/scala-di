@@ -2,26 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="871f616f-e8ee-4a23-a52a-b3737373a884" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/lucidmouse/scala/di/Context$$anonfun$getExistingContextOrEmptyOne$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/lucidmouse/scala/di/Context$$anonfun$setContext$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/lucidmouse/scala/di/Context$.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/lucidmouse/scala/di/ContextCreator$.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/lucidmouse/scala/di/ContextCreator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/lucidmouse/scala/di/CtxData.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/lucidmouse/scala/di/CtxElt.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/lucidmouse/scala/di/EmptyContext$.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/lucidmouse/scala/di/EmptyContext.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/lucidmouse/scala/di/UnknownIdException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/com/lucidmouse/scala/di/test/ContextTest$$anonfun$1$Ctx2$2$.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/com/lucidmouse/scala/di/test/ContextTest$$anonfun$1$Ctx2User$2$$anonfun$7.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/com/lucidmouse/scala/di/test/ContextTest$$anonfun$1$Ctx2User$2$$anonfun$8.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/com/lucidmouse/scala/di/test/ContextTest$$anonfun$1$Ctx2User$2$$anonfun$9.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/com/lucidmouse/scala/di/test/ContextTest$$anonfun$1$Ctx2User$2$.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/com/lucidmouse/scala/di/test/ContextTest$$anonfun$3$$anon$2$$anonfun$10.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/com/lucidmouse/scala/di/test/ContextTest$$anonfun$4$$anon$3$$anonfun$11.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/com/lucidmouse/scala/di/test/ContextTest$$anonfun$1$Ctx1$2$$anonfun$5.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/com/lucidmouse/scala/di/test/ContextTest$$anonfun$1$Ctx1$2$$anonfun$6.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/com/lucidmouse/scala/di/test/ContextTest$$anonfun$1$Ctx1$2$.class" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/com/lucidmouse/scala/di/ContextConfiguration.scala" afterPath="$PROJECT_DIR$/src/main/scala/com/lucidmouse/scala/di/ContextConfiguration.scala" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/com/lucidmouse/scala/di/data/ContextData.scala" afterPath="$PROJECT_DIR$/src/main/scala/com/lucidmouse/scala/di/data/ContextData.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/scala/com/lucidmouse/scala/di/test/ContextTest.scala" afterPath="$PROJECT_DIR$/src/test/scala/com/lucidmouse/scala/di/test/ContextTest.scala" />
     </list>
     <ignored path="scala-di.iws" />
@@ -101,7 +85,7 @@
       <file leaf-file-name="ContextConfiguration.scala" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/com/lucidmouse/scala/di/ContextConfiguration.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="26" selection-start="502" selection-end="502" vertical-scroll-proportion="0.0">
+            <state line="15" column="26" selection-start="482" selection-end="502" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -128,7 +112,7 @@
       <file leaf-file-name="ContextData.scala" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/com/lucidmouse/scala/di/data/ContextData.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="70" column="32" selection-start="2288" selection-end="2314" vertical-scroll-proportion="0.0">
+            <state line="68" column="24" selection-start="2164" selection-end="2182" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -137,7 +121,7 @@
       <file leaf-file-name="ContextTest.scala" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/scala/com/lucidmouse/scala/di/test/ContextTest.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="70" column="55" selection-start="2577" selection-end="2577" vertical-scroll-proportion="0.64311594">
+            <state line="137" column="84" selection-start="5169" selection-end="5169" vertical-scroll-proportion="-0.2228261">
               <folding>
                 <element signature="e#38#69#0" expanded="true" />
               </folding>
@@ -924,7 +908,11 @@
       <created>1337545217268</created>
       <updated>1337545217269</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="ContextCreator will throw an exception when attempting to add already existing ID.">
+      <created>1337625787853</created>
+      <updated>1337625787853</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -991,7 +979,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="ContextCreator name changed to ContextConfiguration.&#10;ContextCreator and current context are not identified by name anymore, parent is provided as ContextCreator instance. Current context is set from ContextCreator (so noone forget to instantiate used ContextCreator and its partent!). &#10;General refactorings." />
+    <option name="LAST_COMMIT_MESSAGE" value="ContextCreator will throw an exception when attempting to add already existing ID." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -1006,6 +994,7 @@
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
     <MESSAGE value="Fixed problem with getCurrentContext, changed CtxMain.ctxName to CtxMain.contextName" />
     <MESSAGE value="ContextCreator name changed to ContextConfiguration.&#10;ContextCreator and current context are not identified by name anymore, parent is provided as ContextCreator instance. Current context is set from ContextCreator (so noone forget to instantiate used ContextCreator and its partent!). &#10;General refactorings." />
+    <MESSAGE value="ContextCreator will throw an exception when attempting to add already existing ID." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1047,7 +1036,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/com/lucidmouse/scala/di/ContextConfiguration.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="26" selection-start="502" selection-end="502" vertical-scroll-proportion="0.0">
+        <state line="15" column="26" selection-start="482" selection-end="502" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1066,14 +1055,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/com/lucidmouse/scala/di/data/ContextData.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="32" selection-start="2288" selection-end="2314" vertical-scroll-proportion="0.0">
+        <state line="68" column="24" selection-start="2164" selection-end="2182" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/scala/com/lucidmouse/scala/di/test/ContextTest.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="55" selection-start="2577" selection-end="2577" vertical-scroll-proportion="0.64311594">
+        <state line="137" column="84" selection-start="5169" selection-end="5169" vertical-scroll-proportion="-0.2228261">
           <folding>
             <element signature="e#38#69#0" expanded="true" />
           </folding>

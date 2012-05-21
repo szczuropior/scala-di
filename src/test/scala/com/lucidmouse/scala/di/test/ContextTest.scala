@@ -6,7 +6,7 @@ import org.scalatest.FlatSpec
 import org.scalatest.junit.JUnitRunner
 import org.scalatest.matchers.ShouldMatchers
 import com.lucidmouse.scala.di.{Context, ContextConfiguration}
-import com.lucidmouse.scala.di.data.AlreadyExistingIdException
+import com.lucidmouse.scala.di.data.{UnknownIdException, AlreadyExistingIdException}
 
 
 /**
@@ -63,7 +63,7 @@ class ContextTest extends FlatSpec with ShouldMatchers {
       expectedAmountAfter1stGet = 1, expectedAmountAfter2ndGet = 2)
   }
 
-  "Exception" should "be thrown on attempt to add already existing id" in {
+  "AlreadyExistingIdException" should "be thrown on attempt to add already existing id" in {
     object Ctx1 extends ContextConfiguration {
       //having
       "1" singleton "one"
@@ -83,6 +83,87 @@ class ContextTest extends FlatSpec with ShouldMatchers {
     Ctx1 setAsCurrentContext
   }
 
+  "UnknownIdException" should "be thrown on attempt to get not existing object" in {
+    //having
+    object Ctx1 extends ContextConfiguration {
+      "1" singleton "one"
+    }
+    Ctx1 setAsCurrentContext
+    //when
+    object Ctx1User extends Context {
+      def getObject(id: String) = get(id).asInstanceOf[String]
+    }
+    // then
+    evaluating { Ctx1User.getObject("2") } should produce [UnknownIdException]
+  }
+
+
+  "Child context object" should "be returned when asking for Id overriden by given context" in {
+    //having
+    object CtxParent extends ContextConfiguration {
+      "1" singleton "one"
+      "2" singleton "two"
+    }
+    object CtxChild extends ContextConfiguration(parentContext = CtxParent) {
+      "1" singleton "ONE!"
+    }
+    CtxChild setAsCurrentContext
+    //when
+    object ChildContextUser extends Context {
+      def getOne : String = get("1").asInstanceOf[String]
+    }
+    // then
+    ChildContextUser.getOne should equal ("ONE!")
+  }
+
+
+  "Parent context object" should "be returned when asking for Id NOT overriden by child context" in {
+    //having
+    object CtxParent extends ContextConfiguration {
+      "1" singleton "one"
+      "2" singleton "two"
+    }
+    object CtxChild extends ContextConfiguration(parentContext = CtxParent) {
+      "1" singleton "ONE!"
+    }
+    CtxChild setAsCurrentContext
+    //when
+    object ChildContextUser extends Context {
+      def getTwo : String = get("2").asInstanceOf[String]
+    }
+    // then
+    ChildContextUser.getTwo should equal ("two")
+  }
+
+    "Possible youngest context object" should "be returned when asking for given Id" in {
+    //having
+    object CtxGrandparent extends ContextConfiguration {
+      "1" singleton "one grandparent"
+      "2" singleton "two grandparent"
+      "3" singleton "three grandparent"
+    }
+    object CtxParent extends ContextConfiguration(parentContext = CtxGrandparent) {
+      "1" prototype { ()=>"one parent" }
+      "4" prototype { ()=>"four parent" }
+    }
+    object CtxChild extends ContextConfiguration(parentContext = CtxParent) {
+      "2" lazySingleton { ()=>"two child" }
+    }
+    object CtxGrandchild extends ContextConfiguration(parentContext = CtxChild) {
+      "5" singleton "five grandchild"
+    }
+    CtxGrandchild setAsCurrentContext
+    //when
+    object ContextUser extends Context {
+      def getObject(id: String) : String = get(id).asInstanceOf[String]
+    }
+    // then
+    ContextUser.getObject("1") should equal ("one parent")
+    ContextUser.getObject("2") should equal ("two child")
+    ContextUser.getObject("3") should equal ("three grandparent")
+    ContextUser.getObject("4") should equal ("four parent")
+    ContextUser.getObject("5") should equal ("five grandchild")
+  }
 
   // ----- helper functions -----
 
