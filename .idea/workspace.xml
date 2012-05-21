@@ -2,16 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="871f616f-e8ee-4a23-a52a-b3737373a884" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/license.txt" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/com/lucidmouse/scala/di/test/ContextTest$$anonfun$1$Ctx1$2$$anonfun$5.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/com/lucidmouse/scala/di/test/ContextTest$$anonfun$1$Ctx1$2$$anonfun$6.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/com/lucidmouse/scala/di/test/ContextTest$$anonfun$1$Ctx1$2$.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/com/lucidmouse/scala/di/test/ContextTest$$anonfun$1$Ctx1User$2$.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README" afterPath="$PROJECT_DIR$/README" />
     </list>
     <ignored path="scala-di.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -837,7 +832,11 @@
       <created>1337630290540</created>
       <updated>1337630290540</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="License added (Simplified BSD).">
+      <created>1337631779535</created>
+      <updated>1337631779535</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -924,7 +923,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added tests:&#10;&quot;UnknownIdException&quot; should &quot;be thrown on attempt to get not existing object&quot;&#10;&quot;Child context object&quot; should &quot;be returned when asking for Id overriden by given context&quot;&#10;&quot;Parent context object&quot; should &quot;be returned when asking for Id NOT overriden by child context&quot;&#10;&quot;Possible youngest context object&quot; should &quot;be returned when asking for given Id&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="License added (Simplified BSD)." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -941,6 +940,7 @@
     <MESSAGE value="ContextCreator name changed to ContextConfiguration.&#10;ContextCreator and current context are not identified by name anymore, parent is provided as ContextCreator instance. Current context is set from ContextCreator (so noone forget to instantiate used ContextCreator and its partent!). &#10;General refactorings." />
     <MESSAGE value="ContextCreator will throw an exception when attempting to add already existing ID." />
     <MESSAGE value="Added tests:&#10;&quot;UnknownIdException&quot; should &quot;be thrown on attempt to get not existing object&quot;&#10;&quot;Child context object&quot; should &quot;be returned when asking for Id overriden by given context&quot;&#10;&quot;Parent context object&quot; should &quot;be returned when asking for Id NOT overriden by child context&quot;&#10;&quot;Possible youngest context object&quot; should &quot;be returned when asking for given Id&quot;" />
+    <MESSAGE value="License added (Simplified BSD)." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
