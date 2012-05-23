@@ -26,9 +26,9 @@ class ContextData(val parentCtxData: ContextData = EmptyContext) extends NotNull
     }
   }
 
-  def addPrototype(id: String, obj: ()=>Any) { addObjectToContext(id, ()=>{prototypes(id) = obj}) }
+  def addPrototype(id: String, creator: ()=>Any) { addObjectToContext(id, ()=>{prototypes(id) = creator}) }
 
-  def addLazySingleton(id: String, obj: ()=>Any) { addObjectToContext(id, ()=>{lazySingletons(id) = obj}) }
+  def addLazySingleton(id: String, creator: ()=>Any) { addObjectToContext(id, ()=>{lazySingletons(id) = creator}) }
 
   def addSingleton(id: String, obj: Any) { addObjectToContext(id, ()=>{singletons(id) = obj}) }
 

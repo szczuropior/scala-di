@@ -7,12 +7,17 @@ package com.lucidmouse.scala.di.data
 
 object ContextHolder {
   @volatile var chosenContext: ContextData = EmptyContext
+  @volatile private var ctxHasBeenChosen = false
 
   def choseContext(context: ContextData) {
     chosenContext = context
+    ctxHasBeenChosen = true
   }
 
-  protected def eraseContextInformation() {
+  def eraseContextInformation() {
     chosenContext = EmptyContext
+    ctxHasBeenChosen = false
   }
+
+  def contextHasBeenChosen() = ctxHasBeenChosen
 }

@@ -2,11 +2,11 @@ package com.lucidmouse.scala.di.test
 
 import org.junit.runner.RunWith
 
-import org.scalatest.FlatSpec
 import org.scalatest.junit.JUnitRunner
 import org.scalatest.matchers.ShouldMatchers
 import com.lucidmouse.scala.di.{Context, ContextConfiguration}
-import com.lucidmouse.scala.di.data.{UnknownIdException, AlreadyExistingIdException}
+import org.scalatest.{BeforeAndAfterEach, FlatSpec}
+import com.lucidmouse.scala.di.data.{ContextHolder, UnknownIdException, AlreadyExistingIdException}
 
 
 /**
@@ -15,7 +15,13 @@ import com.lucidmouse.scala.di.data.{UnknownIdException, AlreadyExistingIdExcept
  */
 
 @RunWith(classOf[JUnitRunner])
-class ContextTest extends FlatSpec with ShouldMatchers {
+class ContextTest extends FlatSpec with ShouldMatchers with BeforeAndAfterEach {
+
+  override def beforeEach() {
+    Counter.reset()
+    ContextHolder.eraseContextInformation()
+  }
+
   "Object added by ContextConfiguration" should "be able to be obtained by Context" in {
     //having
     object Ctx1 extends ContextConfiguration {
@@ -41,25 +47,22 @@ class ContextTest extends FlatSpec with ShouldMatchers {
 
 
   "Singleton" should "be created only once (on adding it to context)" in {
-    val creationCounter = new Counter
-    val ctx = new ContextConfiguration() { "o" singleton new CountingObject(creationCounter) }
-    checkObjectsQuantity(ctx, objectId = "o", creationCounter = creationCounter, expectedAmountBeforeGet = 1,
+    val ctx = new ContextConfiguration() { "o" singleton new CountingObject() }
+    checkObjectsQuantity(ctx, objectId = "o", expectedAmountBeforeGet = 1,
                              expectedAmountAfter1stGet = 1, expectedAmountAfter2ndGet = 1)
   }
 
 
   "Lazy singleton" should "be created only once (on 1st get)" in {
-    val creationCounter = new Counter
-    val ctx = new ContextConfiguration() { "o" lazySingleton { () => new CountingObject(creationCounter) } }
-    checkObjectsQuantity(ctx, objectId = "o", creationCounter = creationCounter, expectedAmountBeforeGet = 0,
+    val ctx = new ContextConfiguration() { "o" lazySingleton { () => new CountingObject() } }
+    checkObjectsQuantity(ctx, objectId = "o", expectedAmountBeforeGet = 0,
       expectedAmountAfter1stGet = 1, expectedAmountAfter2ndGet = 1)
   }
 
 
   "Prototype" should "be created per each get request" in {
-    val creationCounter = new Counter
-    val ctx = new ContextConfiguration() { "o" prototype { () => new CountingObject(creationCounter) } }
-    checkObjectsQuantity(ctx, objectId = "o", creationCounter = creationCounter, expectedAmountBeforeGet = 0,
+    val ctx = new ContextConfiguration() { "o" prototype { () => new CountingObject() } }
+    checkObjectsQuantity(ctx, objectId = "o", expectedAmountBeforeGet = 0,
       expectedAmountAfter1stGet = 1, expectedAmountAfter2ndGet = 2)
   }
 
@@ -165,20 +168,58 @@ class ContextTest extends FlatSpec with ShouldMatchers {
     ContextUser.getObject("5") should equal ("five grandchild")
   }
 
+
+  "Component of Lazy Singleton container" should "be initialized lazy when is lazy itself" in {
+    val ctx = new ContextConfiguration() {
+      "component" lazySingleton { ()=>new CountingObject() }
+      "container" lazySingleton { ()=>new Container(get("component")) }
+    }
+    checkObjectsQuantity(ctx, objectId = "container", expectedAmountBeforeGet = 0,
+      expectedAmountAfter1stGet = 1, expectedAmountAfter2ndGet = 1)
+  }
+
+  "Component of Prototype container" should "be initialized lazy when is prototype itself" in {
+    val ctx = new ContextConfiguration() {
+      "component" prototype { ()=>new CountingObject() }
+      "container" prototype { ()=>new Container(get("component")) }
+    }
+    checkObjectsQuantity(ctx, objectId = "container", expectedAmountBeforeGet = 0,
+      expectedAmountAfter1stGet = 1, expectedAmountAfter2ndGet = 2)
+  }
+
+  "Component of Lazy Singleton container" should "be initialized fast when is regular singleton" in {
+    val ctx = new ContextConfiguration() {
+      "component" singleton new CountingObject()
+      "container" lazySingleton { ()=>new Container(get("component")) }
+    }
+    checkObjectsQuantity(ctx, objectId = "container", expectedAmountBeforeGet = 1,
+      expectedAmountAfter1stGet = 1, expectedAmountAfter2ndGet = 1)
+  }
+
+  "Component of Singleton container" should "be initialized fast and only once even if is lazy and prototype" in {
+    val ctx = new ContextConfiguration() {
+      "component" prototype { ()=>{ new CountingObject() } }
+      "container" singleton new Container(get("component").asInstanceOf[CountingObject])
+    }
+    checkObjectsQuantity(ctx, objectId = "container", expectedAmountBeforeGet = 1,
+      expectedAmountAfter1stGet = 1, expectedAmountAfter2ndGet = 1)
+  }
+
+
   // ----- helper functions -----
 
-  def checkObjectsQuantity(ctx: ContextConfiguration, objectId: String, creationCounter: Counter,
-                           expectedAmountBeforeGet: Int, expectedAmountAfter1stGet: Int, expectedAmountAfter2ndGet: Int) {
+  def checkObjectsQuantity(ctx: ContextConfiguration, objectId: String, expectedAmountBeforeGet: Int,
+                           expectedAmountAfter1stGet: Int, expectedAmountAfter2ndGet: Int) {
     //having
     ctx setAsCurrentContext
 
     //when
-    val actualAmountBeforeGet = creationCounter.counter
+    val actualAmountBeforeGet = Counter.counter
     object CtxUser extends Context {
       get(objectId)
-      val actualAmountAfter1stGet = creationCounter.counter
+      val actualAmountAfter1stGet = Counter.counter
       get(objectId)
-      val actualAmountAfter2ndGet = creationCounter.counter
+      val actualAmountAfter2ndGet = Counter.counter
     }
 
     //then
@@ -191,13 +232,17 @@ class ContextTest extends FlatSpec with ShouldMatchers {
 
 //  ------ helper classes ------
 
-class Counter {
+object Counter {
   var counter = 0
   def increase() { counter += 1 }
+  def reset() {counter = 0}
 }
 
-class CountingObject(val counter: Counter) {
-  counter.increase()
+class CountingObject() {
+  Counter.increase()
 }
 
+
+class Container(val counter: CountingObject) {
+}
 
