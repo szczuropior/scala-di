@@ -23,10 +23,6 @@ class ContextConfiguration(val parentContext: ContextConfiguration = DummyContex
     val availableCtx = if (ContextHolder.contextHasBeenChosen()) ContextHolder.chosenContext else context
     availableCtx.get(id).asInstanceOf[T]
   }
-
-
-  //TODO: use or not : protected def get(id: String): Any = { Context getContextOrCreateOne(ctxName, parentContextName) get(id) }
-  //TODO IMPLEMENT: def getLazy(id: String): ()=>Any = {...}
 }
 
 
