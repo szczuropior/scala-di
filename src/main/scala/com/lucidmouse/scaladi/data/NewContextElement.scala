@@ -1,6 +1,6 @@
-package com.lucidmouse.scala.di.data
+package com.lucidmouse.scaladi.data
 
-import com.lucidmouse.scala.di.ContextConfiguration
+import com.lucidmouse.scaladi.ContextConfiguration
 
 /**
   * Created by: m.ludwinowicz[a]gmail.com

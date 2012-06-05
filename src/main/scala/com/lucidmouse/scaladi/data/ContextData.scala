@@ -1,4 +1,4 @@
-package com.lucidmouse.scala.di.data
+package com.lucidmouse.scaladi.data
 
 import collection.mutable.HashMap
 

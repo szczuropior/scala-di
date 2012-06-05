@@ -52,10 +52,10 @@
     </pluginRepositories>
 
     <dependencies>
-        <dependency><groupId>org.scala-lang</groupId><artifactId>scala-library</artifactId><version>2.9.2</version></dependency>
+        <dependency><groupId>org.scala-lang</groupId><artifactId>scala-library</artifactId><version>2.9.1</version></dependency>
         <dependency><groupId>org.slf4j</groupId><artifactId>slf4j-api</artifactId><version>1.6.4</version></dependency>
-        <dependency><groupId>junit</groupId><artifactId>junit</artifactId><version>4.10</version></dependency>
-        <dependency><groupId>org.scalatest</groupId><artifactId>scalatest_2.9.2</artifactId><version>1.7.2</version></dependency>
+        <dependency><groupId>junit</groupId><artifactId>junit</artifactId><version>4.10</version><scope>test</scope></dependency>
+        <dependency><groupId>org.scalatest</groupId><artifactId>scalatest_2.9.1</artifactId><version>1.8</version><scope>test</scope></dependency>
     </dependencies>
     
 </project>

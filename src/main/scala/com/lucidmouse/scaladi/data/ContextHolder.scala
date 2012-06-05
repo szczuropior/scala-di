@@ -1,4 +1,4 @@
-package com.lucidmouse.scala.di.data
+package com.lucidmouse.scaladi.data
 
 /**
  * Created by: m.ludwinowicz[a]gmail.com

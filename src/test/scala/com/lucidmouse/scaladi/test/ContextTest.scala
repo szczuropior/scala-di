@@ -1,12 +1,9 @@
-package com.lucidmouse.scala.di.test
+package com.lucidmouse.scaladi.test
 
-import org.junit.runner.RunWith
-
-import org.scalatest.junit.JUnitRunner
 import org.scalatest.matchers.ShouldMatchers
-import com.lucidmouse.scala.di.{Context, ContextConfiguration}
+import com.lucidmouse.scaladi.{Context, ContextConfiguration}
 import org.scalatest.{BeforeAndAfterEach, FlatSpec}
-import com.lucidmouse.scala.di.data.{ContextHolder, UnknownIdException, AlreadyExistingIdException}
+import com.lucidmouse.scaladi.data.{ContextHolder, UnknownIdException, AlreadyExistingIdException}
 
 
 /**
@@ -14,7 +11,7 @@ import com.lucidmouse.scala.di.data.{ContextHolder, UnknownIdException, AlreadyE
  * 13.05.12, 12:33
  */
 
-@RunWith(classOf[JUnitRunner])
+
 class ContextTest extends FlatSpec with ShouldMatchers with BeforeAndAfterEach {
 
   override def beforeEach() {
@@ -203,6 +200,23 @@ class ContextTest extends FlatSpec with ShouldMatchers with BeforeAndAfterEach {
     }
     checkObjectsQuantity(ctx, objectId = "container", expectedAmountBeforeGet = 1,
       expectedAmountAfter1stGet = 1, expectedAmountAfter2ndGet = 1)
+  }
+
+  "Context" should "guess expected object type" in {
+    //having
+    object Ctx extends ContextConfiguration {
+      "1" singleton "1"
+      "2" singleton 2
+    }
+    //when
+    Ctx setAsCurrentContext
+    object ContextUser extends Context {
+      def getOne: String = get("1")
+      def getTwo: Int = get("2")
+    }
+    // then
+    ContextUser.getOne should equal ("1")
+    ContextUser.getTwo should equal (2)
   }
 
 

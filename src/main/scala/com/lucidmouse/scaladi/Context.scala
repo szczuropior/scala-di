@@ -1,4 +1,4 @@
-package com.lucidmouse.scala.di
+package com.lucidmouse.scaladi
 
 import data.ContextHolder
 
@@ -15,8 +15,8 @@ import data.ContextHolder
  * This should be done by executing setAsCurrentContext() method on ContextConfiguration instance.
  */
 trait Context {
-  def get(id: String): Any = ContextHolder.chosenContext.get(id)
+  def get[T](id: String): T = { ContextHolder.chosenContext.get(id) }.asInstanceOf[T]
 }
 
-
+object Context extends Context
 

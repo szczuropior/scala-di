@@ -1,4 +1,4 @@
-package com.lucidmouse.scala.di
+package com.lucidmouse.scaladi
 
 import data.{NewContextElement, ContextHolder, ContextData}
 
