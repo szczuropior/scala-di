@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="871f616f-e8ee-4a23-a52a-b3737373a884" name="Default" comment="scaladi">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_scala_lang_scala_library_2_9_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_scalatest_scalatest_2_9_2_1_7_2.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/lucidmouse/scala/di/Context$class.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/lucidmouse/scala/di/Context.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.lucidmouse.scala.di.test.ContextTest.xml" afterPath="" />
@@ -24,17 +22,8 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/com/lucidmouse/scala/di/test/ContextTest.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/com/lucidmouse/scala/di/test/Counter.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/com/lucidmouse/scala/di/test/CountingObject.class" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/scala/com/lucidmouse/scala/di/Context.scala" afterPath="$PROJECT_DIR$/src/main/scala/com/lucidmouse/scaladi/Context.scala" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/scala/com/lucidmouse/scala/di/ContextConfiguration.scala" afterPath="$PROJECT_DIR$/src/main/scala/com/lucidmouse/scaladi/ContextConfiguration.scala" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/scala/com/lucidmouse/scala/di/data/ContextData.scala" afterPath="$PROJECT_DIR$/src/main/scala/com/lucidmouse/scaladi/data/ContextData.scala" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/scala/com/lucidmouse/scala/di/data/ContextHolder.scala" afterPath="$PROJECT_DIR$/src/main/scala/com/lucidmouse/scaladi/data/ContextHolder.scala" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/scala/com/lucidmouse/scala/di/data/NewContextElement.scala" afterPath="$PROJECT_DIR$/src/main/scala/com/lucidmouse/scaladi/data/NewContextElement.scala" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/scala/com/lucidmouse/scala/di/test/ContextTest.scala" afterPath="$PROJECT_DIR$/src/test/scala/com/lucidmouse/scaladi/test/ContextTest.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/lucidmouse/scala/concurrent/Synchronized.class" afterPath="$PROJECT_DIR$/target/classes/com/lucidmouse/scala/concurrent/Synchronized.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scala-di.iml" afterPath="$PROJECT_DIR$/scala-di.iml" />
     </list>
     <ignored path="scala-di.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -1090,7 +1079,11 @@
       <created>1337882037083</created>
       <updated>1337882037083</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="There is new object Context and type setting depending on expected type (in generics way).">
+      <created>1338931272973</created>
+      <updated>1338931272978</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1127,6 +1120,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30769232" sideWeight="0.68898726" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905984" sideWeight="0.4847814" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905984" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1137,7 +1131,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Repo Search" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905984" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905984" sideWeight="0.4847814" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39957264" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1179,7 +1172,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="scala-di:scala-di maven group:artifact &#10;changed to &#10;com.lucidmouse.scaladi:scaladi-core" />
+    <option name="LAST_COMMIT_MESSAGE" value="There is new object Context and type setting depending on expected type (in generics way)." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -1200,6 +1193,7 @@
     <MESSAGE value="License added (Simplified BSD), project warnings removed." />
     <MESSAGE value="Components of lazy objects are initialized lazily, can be obtained using ContextCreator get() method," />
     <MESSAGE value="scala-di:scala-di maven group:artifact &#10;changed to &#10;com.lucidmouse.scaladi:scaladi-core" />
+    <MESSAGE value="There is new object Context and type setting depending on expected type (in generics way)." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
