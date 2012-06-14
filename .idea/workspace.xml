@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="871f616f-e8ee-4a23-a52a-b3737373a884" name="Default" comment="scaladi">
+    <list default="true" id="871f616f-e8ee-4a23-a52a-b3737373a884" name="Default" comment="Added">
       <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/lucidmouse/scala/di/Context$class.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/lucidmouse/scala/di/Context.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.lucidmouse.scala.di.test.ContextTest.xml" afterPath="" />
@@ -22,8 +22,9 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/com/lucidmouse/scala/di/test/ContextTest.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/com/lucidmouse/scala/di/test/Counter.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/com/lucidmouse/scala/di/test/CountingObject.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/lucidmouse/scala/concurrent/Synchronized.class" afterPath="$PROJECT_DIR$/target/classes/com/lucidmouse/scala/concurrent/Synchronized.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/com/lucidmouse/scaladi/ContextConfiguration.scala" afterPath="$PROJECT_DIR$/src/main/scala/com/lucidmouse/scaladi/ContextConfiguration.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/scala/com/lucidmouse/scaladi/test/ContextTest.scala" afterPath="$PROJECT_DIR$/src/test/scala/com/lucidmouse/scaladi/test/ContextTest.scala" />
     </list>
     <ignored path="scala-di.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -84,7 +85,7 @@
       <file leaf-file-name="Context.scala" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/com/lucidmouse/scaladi/Context.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="68" selection-start="127" selection-end="127" vertical-scroll-proportion="0.0">
+            <state line="11" column="43" selection-start="133" selection-end="133" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -99,10 +100,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ContextTest.scala" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="ContextTest.scala" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/scala/com/lucidmouse/scaladi/test/ContextTest.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="226" column="104" selection-start="8498" selection-end="8498" vertical-scroll-proportion="0.28938907">
+            <state line="248" column="11" selection-start="9112" selection-end="9112" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -129,7 +130,7 @@
       <file leaf-file-name="ContextConfiguration.scala" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/com/lucidmouse/scaladi/ContextConfiguration.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="51" selection-start="752" selection-end="752" vertical-scroll-proportion="0.0">
+            <state line="16" column="70" selection-start="660" selection-end="660" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -138,16 +139,16 @@
       <file leaf-file-name="NewContextElement.scala" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/com/lucidmouse/scaladi/data/NewContextElement.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="26" selection-start="656" selection-end="658" vertical-scroll-proportion="0.0">
+            <state line="11" column="58" selection-start="363" selection-end="363" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ContextData.scala" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="ContextData.scala" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/com/lucidmouse/scaladi/data/ContextData.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="40" selection-start="940" selection-end="940" vertical-scroll-proportion="0.0">
+            <state line="9" column="17" selection-start="158" selection-end="158" vertical-scroll-proportion="0.20833333">
               <folding />
             </state>
           </provider>
@@ -176,13 +177,13 @@
         <option value="$PROJECT_DIR$/src/main/scala/com/lucidmouse/scala/di/data/ContextHolder.scala" />
         <option value="$PROJECT_DIR$/src/test/scala/com/lucidmouse/scala/di/test/ContextTest.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/lucidmouse/scala/di/ContextConfiguration.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/com/lucidmouse/scaladi/ContextConfiguration.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/lucidmouse/scaladi/data/ContextHolder.scala" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/scala/com/lucidmouse/scaladi/data/ContextData.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/com/lucidmouse/scaladi/data/NewContextElement.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/lucidmouse/scaladi/Context.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/com/lucidmouse/scaladi/data/NewContextElement.scala" />
         <option value="$PROJECT_DIR$/src/test/scala/com/lucidmouse/scaladi/test/ContextTest.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/com/lucidmouse/scaladi/ContextConfiguration.scala" />
       </list>
     </option>
   </component>
@@ -422,30 +423,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="PackagesPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scala-di" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scala-di" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -492,10 +469,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="test" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ContextTest.scala" />
-              <option name="myItemType" value="org.jetbrains.plugins.scala.components.ScalaDefsProjectViewProvider$ScalaFileTreeNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -586,6 +559,30 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scala-di" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scala-di" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -602,9 +599,9 @@
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
-    <property name="options.searchVisible" value="true" />
     <property name="dynamic.classpath" value="false" />
+    <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -693,25 +690,6 @@
         <option name="SBT.BeforeRunTask" enabled="false" runInCurrentModule="false" />
       </method>
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-        <option name="SBT.BeforeRunTask" enabled="false" runInCurrentModule="false" />
-      </method>
-    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -737,6 +715,25 @@
       <envs />
       <properties />
       <listeners />
+      <method>
+        <option name="AntTarget" enabled="false" />
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
+        <option name="Maven.BeforeRunTask" enabled="false" />
+        <option name="SBT.BeforeRunTask" enabled="false" runInCurrentModule="false" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method>
         <option name="AntTarget" enabled="false" />
         <option name="BuildArtifacts" enabled="false" />
@@ -1083,7 +1080,11 @@
       <created>1338931272973</created>
       <updated>1338931272978</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="remaining push">
+      <created>1338931761548</created>
+      <updated>1338931761548</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1115,9 +1116,9 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Maven-2 Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="SBT Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30769232" sideWeight="0.3071389" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="SBT Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30769232" sideWeight="0.3054787" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39957264" sideWeight="0.4980631" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30769232" sideWeight="0.68898726" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27991453" sideWeight="0.32816824" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905984" sideWeight="0.4847814" order="10" side_tool="false" content_ui="tabs" />
@@ -1125,8 +1126,8 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20143884" sideWeight="0.6923077" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27991453" sideWeight="0.670725" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20143884" sideWeight="0.72008544" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27991453" sideWeight="0.66795796" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Repo Search" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1172,7 +1173,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="There is new object Context and type setting depending on expected type (in generics way)." />
+    <option name="LAST_COMMIT_MESSAGE" value="remaining push" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -1194,6 +1195,7 @@
     <MESSAGE value="Components of lazy objects are initialized lazily, can be obtained using ContextCreator get() method," />
     <MESSAGE value="scala-di:scala-di maven group:artifact &#10;changed to &#10;com.lucidmouse.scaladi:scaladi-core" />
     <MESSAGE value="There is new object Context and type setting depending on expected type (in generics way)." />
+    <MESSAGE value="remaining push" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1245,7 +1247,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/com/lucidmouse/scaladi/Context.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="68" selection-start="127" selection-end="127" vertical-scroll-proportion="0.0" />
+        <state line="11" column="43" selection-start="133" selection-end="133" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
@@ -1263,24 +1265,30 @@
         <state line="7" column="7" selection-start="113" selection-end="113" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/lucidmouse/scaladi/ContextConfiguration.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="51" selection-start="752" selection-end="752" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/com/lucidmouse/scaladi/data/NewContextElement.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="26" selection-start="656" selection-end="658" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/lucidmouse/scaladi/data/ContextData.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="40" selection-start="940" selection-end="940" vertical-scroll-proportion="0.0" />
+        <state line="11" column="58" selection-start="363" selection-end="363" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/scala/com/lucidmouse/scaladi/test/ContextTest.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="226" column="104" selection-start="8498" selection-end="8498" vertical-scroll-proportion="0.28938907">
+        <state line="248" column="11" selection-start="9112" selection-end="9112" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/lucidmouse/scaladi/ContextConfiguration.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="70" selection-start="660" selection-end="660" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/lucidmouse/scaladi/data/ContextData.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="17" selection-start="158" selection-end="158" vertical-scroll-proportion="0.20833333">
           <folding />
         </state>
       </provider>

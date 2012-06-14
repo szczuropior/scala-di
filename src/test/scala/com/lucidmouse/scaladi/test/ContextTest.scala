@@ -104,7 +104,7 @@ class ContextTest extends FlatSpec with ShouldMatchers with BeforeAndAfterEach {
       "1" singleton "one"
       "2" singleton "two"
     }
-    object CtxChild extends ContextConfiguration(parentContext = CtxParent) {
+    object CtxChild extends ContextConfiguration(extendedContexts = CtxParent) {
       "1" singleton "ONE!"
     }
     CtxChild setAsCurrentContext
@@ -123,7 +123,7 @@ class ContextTest extends FlatSpec with ShouldMatchers with BeforeAndAfterEach {
       "1" singleton "one"
       "2" singleton "two"
     }
-    object CtxChild extends ContextConfiguration(parentContext = CtxParent) {
+    object CtxChild extends ContextConfiguration(extendedContexts = CtxParent) {
       "1" singleton "ONE!"
     }
     CtxChild setAsCurrentContext
@@ -142,14 +142,14 @@ class ContextTest extends FlatSpec with ShouldMatchers with BeforeAndAfterEach {
       "2" singleton "two grandparent"
       "3" singleton "three grandparent"
     }
-    object CtxParent extends ContextConfiguration(parentContext = CtxGrandparent) {
+    object CtxParent extends ContextConfiguration(extendedContexts = CtxGrandparent) {
       "1" prototype { ()=>"one parent" }
       "4" prototype { ()=>"four parent" }
     }
-    object CtxChild extends ContextConfiguration(parentContext = CtxParent) {
+    object CtxChild extends ContextConfiguration(extendedContexts = CtxParent) {
       "2" lazySingleton { ()=>"two child" }
     }
-    object CtxGrandchild extends ContextConfiguration(parentContext = CtxChild) {
+    object CtxGrandchild extends ContextConfiguration(extendedContexts = CtxChild) {
       "5" singleton "five grandchild"
     }
     CtxGrandchild setAsCurrentContext
@@ -219,6 +219,57 @@ class ContextTest extends FlatSpec with ShouldMatchers with BeforeAndAfterEach {
     ContextUser.getTwo should equal (2)
   }
 
+
+  "Context extending multiple contexts" should "contain all objects stored by them and objects contained by itself" in {
+    //having
+    object Ctx12 extends ContextConfiguration {
+      "1" singleton "1"
+      "2" prototype (()=>2)
+    }
+    object Ctx3 extends ContextConfiguration {
+      "3" lazySingleton (()=>"3")
+    }
+    object Ctx4 extends ContextConfiguration {
+      "4" singleton "4"
+    }
+    object Ctx123456 extends ContextConfiguration(extendedContexts = Ctx12) {
+      "5" prototype (()=>5)
+      "6" singleton "6"
+    }
+    //when
+    Ctx123456 setAsCurrentContext
+    object ContextUser extends Context {
+      def get1: String = get("1")
+      def get2: Int = get("2")
+      def get3: String = get("3")
+      def get4: String = get("4")
+      def get5: Int = get("5")
+      def get6: String = get("6")
+    }
+    // then
+    ContextUser.get1 should equal ("1")
+    ContextUser.get2 should equal (2)
+    ContextUser.get3 should equal ("3")
+    ContextUser.get4 should equal ("4")
+    ContextUser.get5 should equal (5)
+    ContextUser.get6 should equal ("6")
+  }
+
+  "When context1 extends context2 containing object with identical id, context1 object" should "be obtained on get" in {
+
+  }
+
+  "Object stored by last context on multiple extending list" should "be the visible one" in {
+
+  }
+
+  "When ctx1 extends ctx2 and there are objects with identical ids with scopes difference, main object scope" should "be taken into account" in {
+
+  }
+
+  "When ctx extends multiple contexts and there are object scope differences on extension list, the last ctx scope" should "be taken into account" in {
+
+  }
 
   // ----- helper functions -----
 
