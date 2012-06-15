@@ -5,17 +5,17 @@ package com.lucidmouse.scaladi.data
  * 20.05.12, 19:47
  */
 
-object ContextHolder {
-  @volatile var chosenContext: ContextData = EmptyContext
+private[scaladi] object ContextHolder {
+  @volatile var chosenContext: ContextData = InvalidContext
   @volatile private var ctxHasBeenChosen = false
 
-  def choseContext(context: ContextData) {
+  def choseGlobalContext(context: ContextData) {
     chosenContext = context
     ctxHasBeenChosen = true
   }
 
-  def eraseContextInformation() {
-    chosenContext = EmptyContext
+  def eraseGlobalContextInformation() {
+    chosenContext = InvalidContext
     ctxHasBeenChosen = false
   }
 

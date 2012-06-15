@@ -1,13 +1,11 @@
 package com.lucidmouse.scaladi.data
 
-import com.lucidmouse.scaladi.ContextConfiguration
-
 /**
   * Created by: m.ludwinowicz[a]gmail.com
   * 20.05.12, 19:47
   */
 
-class NewContextElement(id: String, ctx: ContextData) {
+private[scaladi] class ContextDataUpdater(id: String, ctx: ContextData) {
   /** Creates Prototype: new object will be created on each Context.get() operation. */
      def prototype(x: ()=>Any) { ctx addPrototype(id, x) }
 

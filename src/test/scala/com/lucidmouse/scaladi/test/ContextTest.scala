@@ -1,9 +1,11 @@
 package com.lucidmouse.scaladi.test
 
 import org.scalatest.matchers.ShouldMatchers
-import com.lucidmouse.scaladi.{Context, ContextConfiguration}
 import org.scalatest.{BeforeAndAfterEach, FlatSpec}
-import com.lucidmouse.scaladi.data.{ContextHolder, UnknownIdException, AlreadyExistingIdException}
+import org.scalatest.junit.JUnitRunner
+import com.lucidmouse.scaladi.data.{ContextHolder}
+import com.lucidmouse.scaladi.{UnknownIdException, AlreadyExistingIdException, Context, ContextConfiguration}
+import org.junit.runner.RunWith
 
 
 /**
@@ -12,11 +14,12 @@ import com.lucidmouse.scaladi.data.{ContextHolder, UnknownIdException, AlreadyEx
  */
 
 
+@RunWith(classOf[JUnitRunner])
 class ContextTest extends FlatSpec with ShouldMatchers with BeforeAndAfterEach {
 
   override def beforeEach() {
     Counter.reset()
-    ContextHolder.eraseContextInformation()
+    ContextHolder.eraseGlobalContextInformation()
   }
 
   "Object added by ContextConfiguration" should "be able to be obtained by Context" in {
@@ -44,21 +47,21 @@ class ContextTest extends FlatSpec with ShouldMatchers with BeforeAndAfterEach {
 
 
   "Singleton" should "be created only once (on adding it to context)" in {
-    val ctx = new ContextConfiguration() { "o" singleton new CountingObject() }
+    val ctx = new ContextConfiguration { "o" singleton new CountingObject() }
     checkObjectsQuantity(ctx, objectId = "o", expectedAmountBeforeGet = 1,
                              expectedAmountAfter1stGet = 1, expectedAmountAfter2ndGet = 1)
   }
 
 
   "Lazy singleton" should "be created only once (on 1st get)" in {
-    val ctx = new ContextConfiguration() { "o" lazySingleton { () => new CountingObject() } }
+    val ctx = new ContextConfiguration { "o" lazySingleton { () => new CountingObject() } }
     checkObjectsQuantity(ctx, objectId = "o", expectedAmountBeforeGet = 0,
       expectedAmountAfter1stGet = 1, expectedAmountAfter2ndGet = 1)
   }
 
 
   "Prototype" should "be created per each get request" in {
-    val ctx = new ContextConfiguration() { "o" prototype { () => new CountingObject() } }
+    val ctx = new ContextConfiguration { "o" prototype { () => new CountingObject() } }
     checkObjectsQuantity(ctx, objectId = "o", expectedAmountBeforeGet = 0,
       expectedAmountAfter1stGet = 1, expectedAmountAfter2ndGet = 2)
   }
@@ -167,7 +170,7 @@ class ContextTest extends FlatSpec with ShouldMatchers with BeforeAndAfterEach {
 
 
   "Component of Lazy Singleton container" should "be initialized lazy when is lazy itself" in {
-    val ctx = new ContextConfiguration() {
+    val ctx = new ContextConfiguration {
       "component" lazySingleton { ()=>new CountingObject() }
       "container" lazySingleton { ()=>new Container(get("component")) }
     }
@@ -176,7 +179,7 @@ class ContextTest extends FlatSpec with ShouldMatchers with BeforeAndAfterEach {
   }
 
   "Component of Prototype container" should "be initialized lazy when is prototype itself" in {
-    val ctx = new ContextConfiguration() {
+    val ctx = new ContextConfiguration {
       "component" prototype { ()=>new CountingObject() }
       "container" prototype { ()=>new Container(get("component")) }
     }
@@ -185,7 +188,7 @@ class ContextTest extends FlatSpec with ShouldMatchers with BeforeAndAfterEach {
   }
 
   "Component of Lazy Singleton container" should "be initialized fast when is regular singleton" in {
-    val ctx = new ContextConfiguration() {
+    val ctx = new ContextConfiguration {
       "component" singleton new CountingObject()
       "container" lazySingleton { ()=>new Container(get("component")) }
     }
@@ -194,7 +197,7 @@ class ContextTest extends FlatSpec with ShouldMatchers with BeforeAndAfterEach {
   }
 
   "Component of Singleton container" should "be initialized fast and only once even if is lazy and prototype" in {
-    val ctx = new ContextConfiguration() {
+    val ctx = new ContextConfiguration {
       "component" prototype { ()=>{ new CountingObject() } }
       "container" singleton new Container(get("component").asInstanceOf[CountingObject])
     }
@@ -232,7 +235,7 @@ class ContextTest extends FlatSpec with ShouldMatchers with BeforeAndAfterEach {
     object Ctx4 extends ContextConfiguration {
       "4" singleton "4"
     }
-    object Ctx123456 extends ContextConfiguration(extendedContexts = Ctx12) {
+    object Ctx123456 extends ContextConfiguration(Ctx12, Ctx3, Ctx4) {
       "5" prototype (()=>5)
       "6" singleton "6"
     }
@@ -256,7 +259,30 @@ class ContextTest extends FlatSpec with ShouldMatchers with BeforeAndAfterEach {
   }
 
   "When context1 extends context2 containing object with identical id, context1 object" should "be obtained on get" in {
-
+    //having
+    object CtxParent extends ContextConfiguration {
+      "1" singleton "1-CtxParent"
+      "2" prototype (()=>"2-CtxParent")
+      "3" singleton "3-CtxParent"
+    }
+    object CtxChild extends ContextConfiguration(extendedContexts = CtxParent) {
+      "1" singleton "1-CtxChild"
+      "2" prototype (()=>"2-CtxChild")
+      "4" prototype (()=>"4-CtxChild")
+    }
+    //when
+    CtxChild setAsCurrentContext
+    object ContextUser extends Context {
+      def get1: String = get("1")
+      def get2: String = get("2")
+      def get3: String = get("3")
+      def get4: String = get("4")
+    }
+    // then
+    ContextUser.get1 should equal ("1-CtxChild1")
+    ContextUser.get2 should equal ("2-CtxChild")
+    ContextUser.get3 should equal ("3-CtxParent")
+    ContextUser.get4 should equal ("4-CtxChild")
   }
 
   "Object stored by last context on multiple extending list" should "be the visible one" in {

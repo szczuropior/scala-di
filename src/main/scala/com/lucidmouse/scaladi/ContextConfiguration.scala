@@ -1,6 +1,6 @@
 package com.lucidmouse.scaladi
 
-import data.{NewContextElement, ContextHolder, ContextData}
+import data.{ContextDataUpdater, ContextHolder, ContextData}
 
 
 /**
@@ -13,11 +13,16 @@ import data.{NewContextElement, ContextHolder, ContextData}
  * @param extendedContexts parent of _this_ context : all objects contained in parent (and parent's parents) not declared
  *                      implicitly by _this_ context will be accessible from _this_ context
  */
-class ContextConfiguration(val extendedContexts: ContextConfiguration* = DummyContextCreator) extends NotNull {
-  val context: ContextData = if (extendedContexts != null) new ContextData(extendedContexts.context) else new ContextData()
-  implicit def string2CtxElt(id: String) = new NewContextElement(id, this.context)
+class ContextConfiguration(extendedContexts: ContextConfiguration*) extends NotNull {
+  val context: ContextData =
+    if (extendedContexts != null) new ContextData(extendedContexts map(_.context))
+    else new ContextData(Seq.empty[ContextData])
+  implicit def string2CtxElt(id: String) = new ContextDataUpdater(id, this.context)
 
-  def setAsCurrentContext() {ContextHolder choseContext(this.context)}
+
+  def extend(contexts: ContextConfiguration*) {}
+
+  def setAsCurrentContext() {ContextHolder choseGlobalContext this.context}
 
   def get[T](id: String): T = {
     val availableCtx = if (ContextHolder.contextHasBeenChosen()) ContextHolder.chosenContext else context
@@ -25,8 +30,4 @@ class ContextConfiguration(val extendedContexts: ContextConfiguration* = DummyCo
   }
 }
 
-
-
-private object DummyContextCreator extends ContextConfiguration {
-  override val context = new ContextData()
-}
+class AlreadyExistingIdException(id: String) extends Exception("Object idetidied by ID = '" + id + "' has already been added to the context!")
