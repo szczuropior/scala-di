@@ -1,7 +1,7 @@
 package com.lucidmouse.scaladi.data
 
 import collection.mutable.HashMap
-import com.lucidmouse.scaladi.{AlreadyExistingIdException, UnknownIdException}
+import com.lucidmouse.scaladi.{InvalidOverridingException, AlreadyExistingIdException, UnknownIdException}
 
 /**
  * Created by: m.ludwinowicz[a]gmail.com
@@ -34,22 +34,27 @@ private[scaladi] class ContextData(parentContextsData: Seq[ContextData]) extends
     }
   }
 
-  def addPrototype(id: String, creator: ()=>Any) { addObjectToContext(id, ()=>{ prototypes(id) = creator }) }
+  def addPrototype(id: String, creator: ()=>Any, overrides: Boolean) { addObjectToContext(id, ()=>{ prototypes(id) = creator }, overrides) }
 
-  def addLazySingleton(id: String, creator: ()=>Any) { addObjectToContext(id, ()=>{ lazySingletons(id) = creator }) }
+  def addLazySingleton(id: String, creator: ()=>Any, overrides: Boolean) { addObjectToContext(id, ()=>{ lazySingletons(id) = creator }, overrides) }
 
-  def addSingleton(id: String, obj: Any) { addObjectToContext(id, ()=>{ singletons(id) = obj }) }
+  def addSingleton(id: String, obj: Any, overrides: Boolean) { addObjectToContext(id, ()=>{ singletons(id) = obj }, overrides) }
 
   private def createObject(creator: ()=>Any): Any = {
     creator()
   }
 
-  private def addObjectToContext(id: String, addFunction: ()=>Unit) = synchronized {
-     if ((prototypes contains id) || (singletons contains id) || (lazySingletons contains id)) {
-       throw new AlreadyExistingIdException(id)
-     }
-     addFunction()
-   }
+  private def addObjectToContext(id: String, addFunction: ()=>Unit, isOverriding: Boolean) = synchronized {
+    isOverriding match {
+      case false => if (containsId(id)) throw new AlreadyExistingIdException(id)
+      case true => if (!containsId(id)) throw new InvalidOverridingException(id) else removeId(id)
+    }
+    addFunction()
+  }
+
+  private def containsId(id: String) = (prototypes contains id) || (singletons contains id) || (lazySingletons contains id)
+
+  private def removeId(id: String) = { prototypes remove id; singletons remove id; lazySingletons remove id } //TODO optimise
 
   private def copyMap[T](from: HashMap[String, T], to: HashMap[String, T]) = synchronized {
     from.foreach { case (key, value) => to update (key, value) }
@@ -62,11 +67,11 @@ private[scaladi] class ContextData(parentContextsData: Seq[ContextData]) extends
 
 
 private[scaladi] object InvalidContext extends ContextData(Seq.empty[ContextData]) {
-  override def addPrototype(id: String, obj: () => Any) {}
+  override def addPrototype(id: String, obj: () => Any, overrides: Boolean) {}
 
-  override def addLazySingleton(id: String, obj: () => Any) {}
+  override def addLazySingleton(id: String, obj: () => Any, overrides: Boolean) {}
 
-  override def addSingleton(id: String, obj: Any) {}
+  override def addSingleton(id: String, obj: Any, overrides: Boolean) {}
 
   override def get(id: String): Any = throw new IllegalStateException("No current context has been set!  \n" +
     "Please, run Context.choseGlobalContext(...) to set the current context..")

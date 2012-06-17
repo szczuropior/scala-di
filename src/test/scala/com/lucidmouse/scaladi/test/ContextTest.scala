@@ -101,14 +101,14 @@ class ContextTest extends FlatSpec with ShouldMatchers with BeforeAndAfterEach {
   }
 
 
-  "Child context object" should "be returned when asking for Id overriden by given context" in {
+  "Child context object" should "be returned when asking for Id overrides$ by given context" in {
     //having
     object CtxParent extends ContextConfiguration {
       "1" singleton "one"
       "2" singleton "two"
     }
     object CtxChild extends ContextConfiguration(extendedContexts = CtxParent) {
-      "1" singleton "ONE!"
+      overrides id "1" singleton "ONE!"
     }
     CtxChild setAsCurrentContext
     //when
@@ -120,14 +120,14 @@ class ContextTest extends FlatSpec with ShouldMatchers with BeforeAndAfterEach {
   }
 
 
-  "Parent context object" should "be returned when asking for Id NOT overriden by child context" in {
+  "Parent context object" should "be returned when asking for Id NOT overrides$ by child context" in {
     //having
     object CtxParent extends ContextConfiguration {
       "1" singleton "one"
       "2" singleton "two"
     }
     object CtxChild extends ContextConfiguration(extendedContexts = CtxParent) {
-      "1" singleton "ONE!"
+      overrides id "1" singleton "ONE!"
     }
     CtxChild setAsCurrentContext
     //when
@@ -146,11 +146,11 @@ class ContextTest extends FlatSpec with ShouldMatchers with BeforeAndAfterEach {
       "3" singleton "three grandparent"
     }
     object CtxParent extends ContextConfiguration(extendedContexts = CtxGrandparent) {
-      "1" prototype { ()=>"one parent" }
+      overrides id "1" prototype { ()=>"one parent" }
       "4" prototype { ()=>"four parent" }
     }
     object CtxChild extends ContextConfiguration(extendedContexts = CtxParent) {
-      "2" lazySingleton { ()=>"two child" }
+      overrides id "2" lazySingleton { ()=>"two child" }
     }
     object CtxGrandchild extends ContextConfiguration(extendedContexts = CtxChild) {
       "5" singleton "five grandchild"
@@ -266,8 +266,8 @@ class ContextTest extends FlatSpec with ShouldMatchers with BeforeAndAfterEach {
       "3" singleton "3-CtxParent"
     }
     object CtxChild extends ContextConfiguration(extendedContexts = CtxParent) {
-      "1" singleton "1-CtxChild"
-      "2" prototype (()=>"2-CtxChild")
+      overrides id "1" singleton "1-CtxChild"
+      overrides id "2" prototype (()=>"2-CtxChild")
       "4" prototype (()=>"4-CtxChild")
     }
     //when
@@ -279,7 +279,7 @@ class ContextTest extends FlatSpec with ShouldMatchers with BeforeAndAfterEach {
       def get4: String = get("4")
     }
     // then
-    ContextUser.get1 should equal ("1-CtxChild1")
+    ContextUser.get1 should equal ("1-CtxChild")
     ContextUser.get2 should equal ("2-CtxChild")
     ContextUser.get3 should equal ("3-CtxParent")
     ContextUser.get4 should equal ("4-CtxChild")
@@ -294,6 +294,10 @@ class ContextTest extends FlatSpec with ShouldMatchers with BeforeAndAfterEach {
   }
 
   "When ctx extends multiple contexts and there are object scope differences on extension list, the last ctx scope" should "be taken into account" in {
+
+  }
+
+  "When ctx declares overriding but do not overrides parent's object ID, exception" should "be thrown" in {
 
   }
 
