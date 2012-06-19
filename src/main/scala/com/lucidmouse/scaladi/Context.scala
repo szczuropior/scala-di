@@ -20,4 +20,3 @@ trait Context {
 
 object Context extends Context
 
-class UnknownIdException(id: String) extends Exception("Object idetidied by ID = '" + id + "' could not have been found!")

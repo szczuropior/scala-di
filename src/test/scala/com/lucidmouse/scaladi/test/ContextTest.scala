@@ -4,8 +4,9 @@ import org.scalatest.matchers.ShouldMatchers
 import org.scalatest.{BeforeAndAfterEach, FlatSpec}
 import org.scalatest.junit.JUnitRunner
 import com.lucidmouse.scaladi.data.{ContextHolder}
-import com.lucidmouse.scaladi.{UnknownIdException, AlreadyExistingIdException, Context, ContextConfiguration}
+import com.lucidmouse.scaladi._
 import org.junit.runner.RunWith
+import collection.mutable
 
 
 /**
@@ -47,41 +48,41 @@ class ContextTest extends FlatSpec with ShouldMatchers with BeforeAndAfterEach {
 
 
   "Singleton" should "be created only once (on adding it to context)" in {
-    val ctx = new ContextConfiguration { "o" singleton new CountingObject() }
+    val ctx = new ContextConfiguration { "o" singleton new CountingObject("o") }
     checkObjectsQuantity(ctx, objectId = "o", expectedAmountBeforeGet = 1,
                              expectedAmountAfter1stGet = 1, expectedAmountAfter2ndGet = 1)
   }
 
 
   "Lazy singleton" should "be created only once (on 1st get)" in {
-    val ctx = new ContextConfiguration { "o" lazySingleton { () => new CountingObject() } }
+    val ctx = new ContextConfiguration { "o" lazySingleton { () => new CountingObject("o") } }
     checkObjectsQuantity(ctx, objectId = "o", expectedAmountBeforeGet = 0,
       expectedAmountAfter1stGet = 1, expectedAmountAfter2ndGet = 1)
   }
 
 
   "Prototype" should "be created per each get request" in {
-    val ctx = new ContextConfiguration { "o" prototype { () => new CountingObject() } }
+    val ctx = new ContextConfiguration { "o" prototype { () => new CountingObject("o") } }
     checkObjectsQuantity(ctx, objectId = "o", expectedAmountBeforeGet = 0,
       expectedAmountAfter1stGet = 1, expectedAmountAfter2ndGet = 2)
   }
 
-  "AlreadyExistingIdException" should "be thrown on attempt to add already existing id" in {
+  "InvalidIdException" should "be thrown on attempt to add already existing id" in {
     object Ctx1 extends ContextConfiguration {
       //having
       "1" singleton "one"
       "2" lazySingleton{ () => "two" }
       "3" prototype { () => new String("three") }
       //when + then
-      evaluating { "1" singleton "one" } should produce [AlreadyExistingIdException]
-      evaluating { "1" lazySingleton { () => "one" } } should produce [AlreadyExistingIdException]
-      evaluating { "1" prototype { () => new String("one") } } should produce [AlreadyExistingIdException]
-      evaluating { "2" singleton "two" } should produce [AlreadyExistingIdException]
-      evaluating { "2" lazySingleton{ () => "two" } } should produce [AlreadyExistingIdException]
-      evaluating { "2" prototype { () => new String("two") } } should produce [AlreadyExistingIdException]
-      evaluating { "3" singleton "three" } should produce [AlreadyExistingIdException]
-      evaluating { "3" lazySingleton { () => "three" } } should produce [AlreadyExistingIdException]
-      evaluating { "3" prototype { () => new String("three") } } should produce [AlreadyExistingIdException]
+      evaluating { "1" singleton "one" } should produce [InvalidIdException]
+      evaluating { "1" lazySingleton { () => "one" } } should produce [InvalidIdException]
+      evaluating { "1" prototype { () => new String("one") } } should produce [InvalidIdException]
+      evaluating { "2" singleton "two" } should produce [InvalidIdException]
+      evaluating { "2" lazySingleton{ () => "two" } } should produce [InvalidIdException]
+      evaluating { "2" prototype { () => new String("two") } } should produce [InvalidIdException]
+      evaluating { "3" singleton "three" } should produce [InvalidIdException]
+      evaluating { "3" lazySingleton { () => "three" } } should produce [InvalidIdException]
+      evaluating { "3" prototype { () => new String("three") } } should produce [InvalidIdException]
     }
     Ctx1 setAsCurrentContext
   }
@@ -97,7 +98,7 @@ class ContextTest extends FlatSpec with ShouldMatchers with BeforeAndAfterEach {
       def getObject(id: String) = get(id).asInstanceOf[String]
     }
     // then
-    evaluating { Ctx1User.getObject("2") } should produce [UnknownIdException]
+    evaluating { Ctx1User.getObject("2") } should produce [InvalidIdException]
   }
 
 
@@ -171,7 +172,7 @@ class ContextTest extends FlatSpec with ShouldMatchers with BeforeAndAfterEach {
 
   "Component of Lazy Singleton container" should "be initialized lazy when is lazy itself" in {
     val ctx = new ContextConfiguration {
-      "component" lazySingleton { ()=>new CountingObject() }
+      "component" lazySingleton { ()=>new CountingObject("container") }
       "container" lazySingleton { ()=>new Container(get("component")) }
     }
     checkObjectsQuantity(ctx, objectId = "container", expectedAmountBeforeGet = 0,
@@ -180,7 +181,7 @@ class ContextTest extends FlatSpec with ShouldMatchers with BeforeAndAfterEach {
 
   "Component of Prototype container" should "be initialized lazy when is prototype itself" in {
     val ctx = new ContextConfiguration {
-      "component" prototype { ()=>new CountingObject() }
+      "component" prototype { ()=>new CountingObject("container") }
       "container" prototype { ()=>new Container(get("component")) }
     }
     checkObjectsQuantity(ctx, objectId = "container", expectedAmountBeforeGet = 0,
@@ -189,7 +190,7 @@ class ContextTest extends FlatSpec with ShouldMatchers with BeforeAndAfterEach {
 
   "Component of Lazy Singleton container" should "be initialized fast when is regular singleton" in {
     val ctx = new ContextConfiguration {
-      "component" singleton new CountingObject()
+      "component" singleton new CountingObject("container")
       "container" lazySingleton { ()=>new Container(get("component")) }
     }
     checkObjectsQuantity(ctx, objectId = "container", expectedAmountBeforeGet = 1,
@@ -198,7 +199,7 @@ class ContextTest extends FlatSpec with ShouldMatchers with BeforeAndAfterEach {
 
   "Component of Singleton container" should "be initialized fast and only once even if is lazy and prototype" in {
     val ctx = new ContextConfiguration {
-      "component" prototype { ()=>{ new CountingObject() } }
+      "component" prototype { ()=>{ new CountingObject("container") } }
       "container" singleton new Container(get("component").asInstanceOf[CountingObject])
     }
     checkObjectsQuantity(ctx, objectId = "container", expectedAmountBeforeGet = 1,
@@ -258,7 +259,7 @@ class ContextTest extends FlatSpec with ShouldMatchers with BeforeAndAfterEach {
     ContextUser.get6 should equal ("6")
   }
 
-  "When context1 extends context2 containing object with identical id, context1 object" should "be obtained on get" in {
+  "When context1 extends context2 containing object with identical id, get()" should "return context1 object" in {
     //having
     object CtxParent extends ContextConfiguration {
       "1" singleton "1-CtxParent"
@@ -266,9 +267,9 @@ class ContextTest extends FlatSpec with ShouldMatchers with BeforeAndAfterEach {
       "3" singleton "3-CtxParent"
     }
     object CtxChild extends ContextConfiguration(extendedContexts = CtxParent) {
-      overrides id "1" singleton "1-CtxChild"
-      overrides id "2" prototype (()=>"2-CtxChild")
-      "4" prototype (()=>"4-CtxChild")
+      overrides id "1" singleton "1-CtxGranchild$"
+      overrides id "2" prototype (()=>"2-CtxGranchild$")
+      "4" prototype (()=>"4-CtxGranchild$")
     }
     //when
     CtxChild setAsCurrentContext
@@ -279,26 +280,110 @@ class ContextTest extends FlatSpec with ShouldMatchers with BeforeAndAfterEach {
       def get4: String = get("4")
     }
     // then
-    ContextUser.get1 should equal ("1-CtxChild")
-    ContextUser.get2 should equal ("2-CtxChild")
+    ContextUser.get1 should equal ("1-CtxGranchild$")
+    ContextUser.get2 should equal ("2-CtxGranchild$")
     ContextUser.get3 should equal ("3-CtxParent")
-    ContextUser.get4 should equal ("4-CtxChild")
+    ContextUser.get4 should equal ("4-CtxGranchild$")
   }
 
-  "Object stored by last context on multiple extending list" should "be the visible one" in {
-
+  "When ctx extends ctx containing identical ids but with scope differences, get()" should "use child object scopes" in {
+    //having
+    object CtxParent extends ContextConfiguration {
+      "1" singleton "1"
+      "2" prototype (()=>"2")
+      "3" lazySingleton (()=>"3")
+      "4" singleton "4"
+      "5" prototype (()=>"5")
+      "6" lazySingleton (()=>"6")
+    }
+    object CtxChild extends ContextConfiguration(CtxParent) {
+      overrides id "1" prototype (()=>new CountingObject("1"))
+      overrides id "2" singleton new CountingObject("2")
+      overrides id "3" singleton new CountingObject("3")
+      overrides id "4" lazySingleton (()=>new CountingObject("4"))
+      overrides id "5" lazySingleton (()=>new CountingObject("5"))
+      overrides id "6" lazySingleton (()=>new CountingObject("6"))
+    }
+    object CtxGranchild extends ContextConfiguration(CtxChild) {
+      ^("6") prototype (()=>new CountingObject("6"))
+    }
+    //when
+    CtxGranchild setAsCurrentContext()
+    // then
+    checkObjectsQuantity(CtxGranchild, objectId = "1", expectedAmountBeforeGet = 0,
+      expectedAmountAfter1stGet = 1, expectedAmountAfter2ndGet = 2)
+    checkObjectsQuantity(CtxGranchild, objectId = "2", expectedAmountBeforeGet = 1,
+      expectedAmountAfter1stGet = 1, expectedAmountAfter2ndGet = 1)
+    checkObjectsQuantity(CtxGranchild, objectId = "3", expectedAmountBeforeGet = 1,
+      expectedAmountAfter1stGet = 1, expectedAmountAfter2ndGet = 1)
+    checkObjectsQuantity(CtxGranchild, objectId = "4", expectedAmountBeforeGet = 0,
+      expectedAmountAfter1stGet = 1, expectedAmountAfter2ndGet = 1)
+    checkObjectsQuantity(CtxGranchild, objectId = "5", expectedAmountBeforeGet = 0,
+      expectedAmountAfter1stGet = 1, expectedAmountAfter2ndGet = 1)
+    checkObjectsQuantity(CtxGranchild, objectId = "6", expectedAmountBeforeGet = 0,
+      expectedAmountAfter1stGet = 1, expectedAmountAfter2ndGet = 2)
   }
 
-  "When ctx1 extends ctx2 and there are objects with identical ids with scopes difference, main object scope" should "be taken into account" in {
-
+  "When context have 2 parents with identical id, creating it" should "throw exception" in {
+    //having
+    object CtxParent_1_1_Singleton extends ContextConfiguration { "1" singleton "1.1" }
+    object CtxParent_1_2_Singleton extends ContextConfiguration { "1" singleton "1.2" }
+    object CtxParent_2_1_Prototype extends ContextConfiguration { "2" prototype (()=>"2.1") }
+    object CtxParent_2_2_Prototype extends ContextConfiguration { "2" prototype (()=>"2.2") }
+    object CtxParent_3_1_LazySingleton extends ContextConfiguration { "3" lazySingleton (()=>"3.1") }
+    object CtxParent_3_2_LazySingleton extends ContextConfiguration { "3" lazySingleton (()=>"3.2") }
+    //when
+    object Ctx1Child extends ContextConfiguration(CtxParent_1_1_Singleton, CtxParent_1_2_Singleton)
+    object Ctx2Child extends ContextConfiguration(CtxParent_2_1_Prototype, CtxParent_2_2_Prototype)
+    object Ctx3Child extends ContextConfiguration(CtxParent_3_1_LazySingleton, CtxParent_3_2_LazySingleton)
+    // then
+    evaluating { Ctx1Child } should produce [InvalidOverridingException]
+    evaluating { Ctx2Child } should produce [InvalidOverridingException]
+    evaluating { Ctx3Child } should produce [InvalidOverridingException]
   }
 
-  "When ctx extends multiple contexts and there are object scope differences on extension list, the last ctx scope" should "be taken into account" in {
-
+  "When context have 2 parents with identical id and different scopes, creating it" should "throw exception" in {
+    //having
+    object CtxParent_Singleton extends ContextConfiguration { "1" singleton "1.s" }
+    object CtxParent_Prototype extends ContextConfiguration { "1" prototype (()=>"1.p") }
+    object CtxParent_LazySingleton extends ContextConfiguration { "1" lazySingleton (()=>"1.ls") }
+    //when
+    object Ctx_s_p extends ContextConfiguration(CtxParent_Singleton, CtxParent_Prototype)
+    object Ctx_s_ls extends ContextConfiguration(CtxParent_Singleton, CtxParent_LazySingleton)
+    object Ctx_ls_p extends ContextConfiguration(CtxParent_LazySingleton, CtxParent_Prototype)
+    object Ctx_ls_s extends ContextConfiguration(CtxParent_LazySingleton, CtxParent_Singleton)
+    object Ctx_p_s extends ContextConfiguration(CtxParent_Prototype, CtxParent_Singleton)
+    object Ctx_p_ls extends ContextConfiguration(CtxParent_Prototype, CtxParent_LazySingleton)
+    // then
+    evaluating { Ctx_s_p } should produce [InvalidOverridingException]
+    evaluating { Ctx_s_ls } should produce [InvalidOverridingException]
+    evaluating { Ctx_ls_p } should produce [InvalidOverridingException]
+    evaluating { Ctx_ls_s } should produce [InvalidOverridingException]
+    evaluating { Ctx_p_s } should produce [InvalidOverridingException]
+    evaluating { Ctx_p_ls } should produce [InvalidOverridingException]
   }
 
   "When ctx declares overriding but do not overrides parent's object ID, exception" should "be thrown" in {
-
+    //having
+    object CtxParent extends ContextConfiguration {
+      "1:parent" singleton "1"
+      "2:parent" prototype (()=>"2")
+      "3:parent" lazySingleton (()=>"3")
+    }
+    //when
+    object CtxChild1 extends ContextConfiguration(CtxParent) {
+      overrides id "1:child" singleton "1"
+    }
+    object CtxChild2 extends ContextConfiguration(CtxParent) {
+      overrides id "2:child" prototype {()=>"2"}
+    }
+    object CtxChild3 extends ContextConfiguration(CtxParent) {
+      overrides id "3:child" lazySingleton {()=>"3"}
+    }
+    // then
+    evaluating { CtxChild1 } should produce [InvalidOverridingException]
+    evaluating { CtxChild2 } should produce [InvalidOverridingException]
+    evaluating { CtxChild3 } should produce [InvalidOverridingException]
   }
 
   // ----- helper functions -----
@@ -309,12 +394,12 @@ class ContextTest extends FlatSpec with ShouldMatchers with BeforeAndAfterEach {
     ctx setAsCurrentContext
 
     //when
-    val actualAmountBeforeGet = Counter.counter
+    val actualAmountBeforeGet = Counter.getVal(objectId)
     object CtxUser extends Context {
       get(objectId)
-      val actualAmountAfter1stGet = Counter.counter
+      val actualAmountAfter1stGet = Counter.getVal(objectId)
       get(objectId)
-      val actualAmountAfter2ndGet = Counter.counter
+      val actualAmountAfter2ndGet = Counter.getVal(objectId)
     }
 
     //then
@@ -328,13 +413,14 @@ class ContextTest extends FlatSpec with ShouldMatchers with BeforeAndAfterEach {
 //  ------ helper classes ------
 
 object Counter {
-  var counter = 0
-  def increase() { counter += 1 }
-  def reset() {counter = 0}
+  val counters = new mutable.HashMap[String, Int]
+  def increase(name: String) { counters(name) = counters.getOrElse(name, 0) + 1 }
+  def getVal(name: String) = counters.getOrElse(name, 0)
+  def reset() { counters.clear }
 }
 
-class CountingObject() {
-  Counter.increase()
+class CountingObject(id: String) {
+  Counter.increase(id)
 }
 
 

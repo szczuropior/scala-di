@@ -1,7 +1,7 @@
 package com.lucidmouse.scaladi.data
 
 import collection.mutable.HashMap
-import com.lucidmouse.scaladi.{InvalidOverridingException, AlreadyExistingIdException, UnknownIdException}
+import com.lucidmouse.scaladi._
 
 /**
  * Created by: m.ludwinowicz[a]gmail.com
@@ -30,7 +30,7 @@ private[scaladi] class ContextData(parentContextsData: Seq[ContextData]) extends
         lazySingletons remove id
         newSingleton
       }
-      else throw new UnknownIdException(id)
+      else raiseUnknownIdException(id)
     }
   }
 
@@ -46,8 +46,8 @@ private[scaladi] class ContextData(parentContextsData: Seq[ContextData]) extends
 
   private def addObjectToContext(id: String, addFunction: ()=>Unit, isOverriding: Boolean) = synchronized {
     isOverriding match {
-      case false => if (containsId(id)) throw new AlreadyExistingIdException(id)
-      case true => if (!containsId(id)) throw new InvalidOverridingException(id) else removeId(id)
+      case false => if (containsId(id)) raiseAlreadyExistingIdException(id)
+      case true => if (!containsId(id)) raiseInvalidOverridingException(id) else removeId(id)
     }
     addFunction()
   }
@@ -57,12 +57,29 @@ private[scaladi] class ContextData(parentContextsData: Seq[ContextData]) extends
   private def removeId(id: String) = { prototypes remove id; singletons remove id; lazySingletons remove id } //TODO optimise
 
   private def copyMap[T](from: HashMap[String, T], to: HashMap[String, T]) = synchronized {
-    from.foreach { case (key, value) => to update (key, value) }
+    from.foreach { case (key, value) =>
+      if (containsId(key)) raiseOverridingIDsInContextParentsException(key)
+      else to(key) = value  //no need to remove ID from other scopes, because the ID cannot be stored in the context !
+    }
   }
 
-//  private def copyMap[T](from: Map[String, T], to: Map[String, T]) = synchronized {
-//    from.foldLeft(to) { case (map, (key, value)) => map updated (key, value) }
-//  }
+  //exceptions
+
+  private def raiseInvalidOverridingException(id: String) = throw new InvalidOverridingException("Object idetidied by ID = '" +
+    id + "' could not be found in parent context though 'overriddes id' modifier has been used.\n" +
+    "Please remove 'overriddes id' modifier in the context definition or check whether proper ID has been used.")
+
+  private def raiseOverridingIDsInContextParentsException(id: String) = throw new InvalidOverridingException(
+    "Object idetidied by ID = '" + id + "' is contained by at least two parents of the context.\n" +
+    "Please, change the value of one of IDs, or use as a parent only one of the contexts with same IDs " +
+      "(especially if one of the contexts extends other one).")
+
+  private def raiseAlreadyExistingIdException(id: String) = throw new InvalidIdException("Object idetidied by ID = '" +
+    id + "' has already been added to the context!\nIf you actually want to override the object with given ID, " +
+    "please use 'overrides id' prefix (overrides id " + id + " ...) while adding the object to the context.")
+
+  private def raiseUnknownIdException(id: String) = throw new InvalidIdException("Object idetidied by ID = '" +
+    id + "' could not have been found!")
 }
 
 

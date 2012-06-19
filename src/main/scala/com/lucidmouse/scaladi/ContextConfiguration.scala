@@ -12,6 +12,8 @@ import data.{ContextDataOverrider, ContextDataUpdater, ContextHolder, ContextDat
  * This class should be used to addFunction object to given context (identified by ctxName).
  * @param extendedContexts parent of _this_ context : all objects contained in parent (and parent's parents) not declared
  *                      implicitly by _this_ context will be accessible from _this_ context
+ * @throws OverridingIDsInContextParentsException when parents of context contain identical ID
+ * @throws AlreadyExistingIdException when ID is overridden without providing 'overrides id' keyword
  */
 class ContextConfiguration(extendedContexts: ContextConfiguration*) extends NotNull {
   val context: ContextData =
@@ -29,22 +31,19 @@ class ContextConfiguration(extendedContexts: ContextConfiguration*) extends NotN
     availableCtx.get(id).asInstanceOf[T]
   }
 
-//  def @:(id: String): String = id
-
-
   object overrides {
+    /** Tells that @id ID is overriding ID of the context's parent. */
     def id (id: String) = new ContextDataOverrider(id, context)
-    //TODO implement type for conversion, add throwing exception when there is no overriding
-    //TODO : what about the situation when there are same ids in different app modules ??
-    // shuld ther be posibility to override ????
   }
+
+  /**
+   * Tells that @id ID is overriding ID of the context's parent. Is short version of 'overrides id'.
+   * @param id overridden ID
+   * @return
+   */
+  def ^(id: String) = new ContextDataOverrider(id, context)
 }
 
-class AlreadyExistingIdException(id: String) extends Exception("Object idetidied by ID = '" + id +
-  "' has already been added to the context!\nIf you actually want to override the object with given ID, " +
-  "please use 'overrides id' prefix (overrides id " + id + " ...) while adding the object to the context.")
+class InvalidIdException(msg: String) extends Exception(msg)
 
-
-class InvalidOverridingException(id: String) extends Exception("Object idetidied by ID = '" + id +
-  "' could not be found in parent context though 'overriddes id' modifier has been used.\n" +
-  "Please remove 'overriddes id' modifier in the context definition or check whether proper ID has been used.")
+class InvalidOverridingException(msg: String) extends Exception(msg)
