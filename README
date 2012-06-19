@@ -1,4 +1,6 @@
 Scala-DI
+ - Dependeny Injection in Scala philosophy
  - author : Michal Ludwinowicz
  - best scala IDE : Intellij IDEA 11.1.1
  - licence : 2-clause license ("Simplified BSD License" or "FreeBSD License")
+ - more information (quick user guide) : please, look at wiki on github scala-di
